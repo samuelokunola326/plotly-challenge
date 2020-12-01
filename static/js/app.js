@@ -1,4 +1,31 @@
-// d3.json("../samples.json").then(function(samples) {
+
+    d3.json("samples.json").then(function(sampleData){
+        console.log(sampleData);
+    });
+
+
+function
+    var trace1 = {
+        // x: [sampleData.wfreq],
+        // y: [sampleData.id],
+        x: [20, 14, 23],
+        y: ['giraffes', 'orangutans', 'monkeys'],
+        type: "bar",
+        orientation: "h"
+    };
+
+    var data = [trace1];
+
+    // var layout = {}
+
+    Plotly.newPlot("bar", data);
+
+    // Call updatePlotly() when a change takes place to the DOM
+d3.selectAll("#selDataset").on("change", updatePlotly);
+
+
+   
+    // d3.json("../samples.json").then(function(samples) {
 
 //     console.log(samples);
   
@@ -12,9 +39,3 @@
     //   console.log("Name:", data.name);
     //   console.log("Hours:", data.hours);
     // });
-
-    d3.json("samples.json").then(function(data){
-        console.log(data);
-    });
-
-   
