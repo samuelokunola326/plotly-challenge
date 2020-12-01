@@ -4,24 +4,62 @@
     });
 
 
-function
-    var trace1 = {
-        // x: [sampleData.wfreq],
-        // y: [sampleData.id],
-        x: [20, 14, 23],
-        y: ['giraffes', 'orangutans', 'monkeys'],
-        type: "bar",
-        orientation: "h"
-    };
+var sortedSampleData = sampleData.sort((a, b) => b.wfreq - a.wfreq);
 
-    var data = [trace1];
+slicedData = sortedSampleData.slice(0, 10);
 
-    // var layout = {}
+reversedData = slicedData.reverse();
 
-    Plotly.newPlot("bar", data);
 
-    // Call updatePlotly() when a change takes place to the DOM
-d3.selectAll("#selDataset").on("change", updatePlotly);
+
+function init() {
+        var trace1 = {
+            x: [reversedData.map(Object => Object.sample_values)],
+            y: [reversedData.map(Object => Object.otu_ids)],
+            // x: [20, 14, 23],
+            // y: ['giraffes', 'orangutans', 'monkeys'],
+            type: "bar",
+            orientation: "h"
+        };
+
+        var data = [trace1];
+
+        // var layout = {}
+
+        Plotly.newPlot("bar", data);
+    }
+
+        // Call updatePlotly() when a change takes place to the DOM
+    d3.selectAll("#selDataset").on("change", updatePlotly);
+
+
+    function updatePlotly() {
+        // Use D3 to select the dropdown menu
+        var dropdownMenu = d3.select("#selDataset");
+        // Assign the value of the dropdown menu option to a variable
+        var dataset = dropdownMenu.property("value");
+      
+        // Initialize x and y arrays
+        var x = [];
+        var y = [];
+      
+        if (dataset === 'dataset1') {
+          x = [1, 2, 3, 4, 5];
+          y = [1, 2, 4, 8, 16];
+        }
+      
+        else if (dataset === 'dataset2') {
+          x = [10, 20, 30, 40, 50];
+          y = [1, 10, 100, 1000, 10000];
+        }
+      
+        // Note the extra brackets around 'x' and 'y'
+        Plotly.restyle("plot", "x", [x]);
+        Plotly.restyle("plot", "y", [y]);
+      }
+      
+      init();
+      
 
 
    
