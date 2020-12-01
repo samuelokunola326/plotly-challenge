@@ -14,10 +14,11 @@ reversedData = slicedData.reverse();
 
 function init() {
         var trace1 = {
-            x: [reversedData.map(Object => Object.sample_values)],
-            y: [reversedData.map(Object => Object.otu_ids)],
-            // x: [20, 14, 23],
-            // y: ['giraffes', 'orangutans', 'monkeys'],
+            // x: [reversedData.map(Object => Object.sample_values)],
+            // y: [reversedData.map(Object => Object.otu_ids)],
+            // text: [reversedData.map(Object => Object.otu_labels)],
+            x: [20, 14, 23],
+            y: ['giraffes', 'orangutans', 'monkeys'],
             type: "bar",
             orientation: "h"
         };
@@ -30,12 +31,12 @@ function init() {
     }
 
         // Call updatePlotly() when a change takes place to the DOM
-    d3.selectAll("#selDataset").on("change", updatePlotly);
+    d3.selectAll("#bar").on("change", updatePlotly);
 
 
     function updatePlotly() {
         // Use D3 to select the dropdown menu
-        var dropdownMenu = d3.select("#selDataset");
+        var dropdownMenu = d3.select("#bar").node();
         // Assign the value of the dropdown menu option to a variable
         var dataset = dropdownMenu.property("value");
       
