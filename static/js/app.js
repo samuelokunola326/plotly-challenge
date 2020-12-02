@@ -4,28 +4,30 @@
     });
 
     // refernce dropdown  
-// var selData = d3.select("#selDataset");
+var selData = d3.select("#selDataset");
 
-// // creating a function to loop through the table data
-// function dropdownData(x){
+// creating a function to loop through the table data
+function dropdownData(x){
     
-//     x.forEach((x) => {
-//         // using d3 to append a tr element for each Object in the Array of objects 
-//         var opt = selData.append("option");
+    x.forEach((x) => {
+        // using d3 to append a tr element for each Object in the Array of objects 
+        var opt = selData.append("option");
         
-//         // then using the objects.entries to console log the objects 
-//         Object.values(x).forEach(([value]) => {
-//             console.log(value);
+        // then using the objects.entries to console log the objects 
+        Object.values(x).forEach(([value]) => {
+            console.log(value);
             
-//             //append the values to each row and input into cells
-//             var val = opt.append("value");
-//             val.text(value); 
-//         });
-//     });
+            //append the values to each row and input into cells
+            var val = opt.append("value");
+            val.text(value); 
+        });
+    });
 
-// }
+}
 
-// dropdownData(sampleData.names)
+var t = ["a","b","c"]
+// console.log(Object.names)
+dropdownData(t)
 
 
 // turn into functions
