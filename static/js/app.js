@@ -79,12 +79,31 @@ function dropdownData(x){
 
 
 function init() {
+    d3.json(jsonData).then(function(sampledata) {
+
+        var index = sampledata.samples.findIndex(sample => sample.id === "940");
+        console.log(`The index in data.samples array is: ${index}.`);
+        var sampleValues = sampledata.samples[index].sample_values.slice(0,10).reverse();
+        var labels = sampledata.samples[index].otu_labels.slice(0,10);
+        // get top 10 otu ids and reverse it
+        var otu_top_10 = (sampledata.samples[index].otu_ids.slice(0, 10)).reverse();
+        // map otu id to OTU + id
+        var otu_id = otu_top_10.map(d => "OTU " + d);
+        // get the top 10 OTU labels
+        var labels = sampledata.samples[index].otu_labels.slice(0,10);
+
+        // var sortedSampleData = sampledata.sort((a, b) => b.sample_values - a.sample_values);
+
+        // var slicedData = sortedSampleData.slice(0, 10);
+
+        // var reversedData = slicedData.reverse();
+
         var trace1 = {
-            // x: reversedData.map(Object => Object.values(sampleData.sample_values)),
-            // y: reversedData.map(Object => Object.values(sampleData.otu_ids)),
-            // text: reversedData.map(Object => Object.values(otu_labels)),
-            x: [20, 14, 23],
-            y: ['giraffes', 'orangutans', 'monkeys'],
+            // x: sampledata.map(Object => Object.values(sampledata.sample_values.slice(0,10).reverse())),
+            // y: sampledata.map(Object => Object.values(sampledata.otu_ids.slice(0,10).reverse())),
+            // text: sampledata.map(Object => Object.values(sampledata.otu_labels.slice(0,10).reverse())),
+            x: sampleValues,
+            y: otu_top_10,
             type: "bar",
             orientation: "h"
         };
@@ -117,7 +136,10 @@ function init() {
         };
 
         Plotly.newPlot("bubble", data2, layout);
-    }
+
+    });
+        
+}
     
     init();
     //     // Call updatePlotly() when a change takes place to the DOM
