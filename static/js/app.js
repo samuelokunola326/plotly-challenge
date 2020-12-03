@@ -39,7 +39,7 @@ function dropdownData(x){
         
         // then using the objects.entries to console log the objects 
         Object.values(x).forEach(([value]) => {
-            console.log(value);
+            // console.log(value);
             
             //append the values to each row and input into cells
             var val = opt.append("value");
