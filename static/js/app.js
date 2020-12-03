@@ -5,11 +5,10 @@ var jsonData = "data/samples.json";
     function initDD() {
         d3.json(jsonData).then(function(sampledata) {
             console.log(sampledata);
-
-
-            var names = sampleData.names;
-
+            
+            var names = sampledata.names;
             console.log(names)
+            dropdownData(names)
 
             // names.forEach((names) => {
             //     d3.select("#selDataset").append("option").text(names);
