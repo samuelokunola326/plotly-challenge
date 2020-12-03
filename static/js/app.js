@@ -1,7 +1,32 @@
 
-    var sampleData = d3.json("samples.json").then(function(sampleData){
-        console.log(sampleData);
-    });
+    
+var jsonData = "data/samples.json";
+   
+    function init() {
+        d3.json(jsonData).then(function(sampledata) {
+            console.log(sampledata);
+
+
+            var names = sampleData.names;
+
+            console.log(names)
+
+            // names.forEach((names) => {
+            //     d3.select("#selDataset").append("option").text(names);
+            // })
+
+        });
+            
+    }
+
+    init();
+
+
+     // var sampleData = d3.json("samples.json").then(function(Data){
+    //     console.log(Data);
+    // });
+
+
 
     // refernce dropdown  
 var selData = d3.select("#selDataset");
@@ -25,9 +50,10 @@ function dropdownData(x){
 
 }
 
-var t = ["a","b","c"]
-// console.log(Object.names)
-dropdownData(t)
+// var t = ["a","b","c"]
+// dropdownData(t)
+
+// console.log(Object.getOwnPropertyNames)
 
 
 // turn into functions
