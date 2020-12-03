@@ -2,7 +2,7 @@
     
 var jsonData = "data/samples.json";
    
-    function init() {
+    function initDD() {
         d3.json(jsonData).then(function(sampledata) {
             console.log(sampledata);
 
@@ -19,7 +19,7 @@ var jsonData = "data/samples.json";
             
     }
 
-    init();
+    initDD();
 
 
      // var sampleData = d3.json("samples.json").then(function(Data){
