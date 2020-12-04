@@ -87,19 +87,20 @@ function init(id) {
         var index = sampledata.samples.findIndex(sample => sample.id === id);
         console.log(`The index in data.samples array is: ${index}.`);
 
-        // var sampleValues = sampledata.samples[index]["sample_values"].slice(0,10).reverse()
-        // var sampleLabels = sampledata.samples[index].otu_labels.slice(0,10);
-        // var 
+        var sampleValues = sampledata.samples[index]["sample_values"].slice(0,10).reverse()
+        var sampleLabels = sampledata.samples[index]["otu_labels"].slice(0,10).reverse();
+        var top_10_ids = (sampledata.samples[index]["otu_ids"].slice(0, 10)).reverse();
+        var otu_id = top_10_ids.map(d => "OTU " + d);
         // console.log(sampledata.samples[index].otu_ids)
 
 
 
         var trace1 = {
-            x: sampledata.samples[index]["sample_values"].slice(0,10).reverse(),
-            y: sampledata.samples[index]["otu_ids"].slice(0,10).reverse(),
-            text: sampledata.samples[index]["otu_labels"].slice(0,10).reverse(),
-            // x: sampleValues,
-            // y: otu_top_10,
+            // x: sampledata.samples[index]["sample_values"].slice(0,10).reverse(),
+            // y: sampledata.samples[index]["otu_ids"].slice(0,10).reverse(),
+            text: sampleLabels,
+            x: sampleValues,
+            y: otu_id,
             type: "bar",
             orientation: "h"
         };
@@ -108,6 +109,9 @@ function init(id) {
 
         var layout = {
             title: "Top 10 OTU",
+            yaxis: {
+                tickmode:"linear"
+            },
             margin: {
                 l: 100,
                 r: 100,
