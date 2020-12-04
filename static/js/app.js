@@ -37,7 +37,7 @@ function getData(id) {
 
      // var sampleData = d3.json("samples.json").then(function(Data){
     //     console.log(Data);
-    // })
+    // });
 
 
 
