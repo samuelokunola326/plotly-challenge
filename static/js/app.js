@@ -10,6 +10,8 @@ var jsonData = "data/samples.json";
             console.log(names)
             dropdownData(names)
 
+            init(names[0])
+
             getData(names[0])
 
             
@@ -135,7 +137,7 @@ function init(id) {
         
 }
     
-    init();
+    // init();
 
     function optionChanged(id) {
         init(id);
