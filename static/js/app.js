@@ -86,25 +86,37 @@ function init(id) {
 
         var index = sampledata.samples.findIndex(sample => sample.id === id);
         console.log(`The index in data.samples array is: ${index}.`);
+
+        // var sampleValues = sampledata.samples[index]["sample_values"].slice(0,10).reverse()
+        // var sampleLabels = sampledata.samples[index].otu_labels.slice(0,10);
+        // var 
         // console.log(sampledata.samples[index].otu_ids)
 
 
 
-        // var trace1 = {
-        //     // x: sampledata.map(Object => Object.values(sampledata.sample_values.slice(0,10).reverse())),
-        //     // y: sampledata.map(Object => Object.values(sampledata.otu_ids.slice(0,10).reverse())),
-        //     // text: sampledata.map(Object => Object.values(sampledata.otu_labels.slice(0,10).reverse())),
-        //     x: sampleValues,
-        //     y: otu_top_10,
-        //     type: "bar",
-        //     orientation: "h"
-        // };
+        var trace1 = {
+            x: sampledata.samples[index]["sample_values"].slice(0,10).reverse(),
+            y: sampledata.samples[index]["otu_ids"].slice(0,10).reverse(),
+            text: sampledata.samples[index]["otu_labels"].slice(0,10).reverse(),
+            // x: sampleValues,
+            // y: otu_top_10,
+            type: "bar",
+            orientation: "h"
+        };
 
-        // var data = [trace1];
+        var data = [trace1];
 
-        // // var layout = {}
+        var layout = {
+            title: "Top 10 OTU",
+            margin: {
+                l: 100,
+                r: 100,
+                t: 100,
+                b: 30
+            }
+        }
 
-        // Plotly.newPlot("bar", data);
+        Plotly.newPlot("bar", data);
 
         
 
@@ -113,8 +125,6 @@ function init(id) {
             x: sampledata.samples[index]["otu_ids"],
             y: sampledata.samples[index]["sample_values"],
             text:  sampledata.samples[index]["otu_labels"],
-            // x: [1, 2, 3, 4],
-            // y: [10, 11, 12, 13],
             mode: "markers",
             marker: {
                 size: sampledata.samples[index]["sample_values"],
