@@ -81,9 +81,9 @@ function dropdownData(x){
 function init(id) {
     d3.json(jsonData).then(function(sampledata) {
         console.log(sampledata.samples);
-        
-        // var index = sampledata.samples.findIndex(sample => sample.id === id);
-        // console.log(`The index in data.samples array is: ${index}.`);
+
+        var index = sampledata.samples.findIndex(sample => sample.id === id);
+        console.log(`The index in data.samples array is: ${index}.`);
         // console.log(sampledata.samples[index].otu_ids)
 
 
@@ -107,29 +107,29 @@ function init(id) {
         
 
 // plot for bubble chart 
-        // var trace2 = {
-        //     x: sampledata.samples[index].otu_ids,
-        //     y: sampledata.samples[index].sample_values,
-        //     text:  sampledata.samples[index].otu_labels,
-        //     // x: [1, 2, 3, 4],
-        //     // y: [10, 11, 12, 13],
-        //     mode: "markers",
-        //     marker: {
-        //         size: sampledata.samples[index].sample_values,
-        //         color: sampledata.samples[index].otu_ids
-        //     }
-        // };
+        var trace2 = {
+            x: sampledata.samples[index]["otu_ids"],
+            y: sampledata.samples[index]["sample_values"],
+            text:  sampledata.samples[index]["otu_labels"],
+            // x: [1, 2, 3, 4],
+            // y: [10, 11, 12, 13],
+            mode: "markers",
+            marker: {
+                size: sampledata.samples[index]["sample_values"],
+                color: sampledata.samples[index]["otu_ids"]
+            }
+        };
 
-        // var data2 = [trace2];
+        var data2 = [trace2];
 
-        // var layout = {
-        //     xaxis:{title: "OTU ID"},
-        //     showlegend: false,
-        //     height: 600,
-        //     width: 1000
-        // };
+        var layout = {
+            xaxis:{title: "OTU ID"},
+            showlegend: false,
+            height: 600,
+            width: 1000
+        };
 
-        // Plotly.newPlot("bubble", data2, layout);
+        Plotly.newPlot("bubble", data2, layout);
 
     });
         
