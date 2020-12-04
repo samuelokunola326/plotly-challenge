@@ -37,7 +37,7 @@ function getData(id) {
 
      // var sampleData = d3.json("samples.json").then(function(Data){
     //     console.log(Data);
-    // });
+    // })
 
 
 
@@ -81,22 +81,6 @@ function dropdownData(x){
 function init() {
     d3.json(jsonData).then(function(sampledata) {
 
-        var index = sampledata.samples.findIndex(sample => sample.id === "940");
-        console.log(`The index in data.samples array is: ${index}.`);
-        var sampleValues = sampledata.samples[index].sample_values.slice(0,10).reverse();
-        var labels = sampledata.samples[index].otu_labels.slice(0,10);
-        // get top 10 otu ids and reverse it
-        var otu_top_10 = (sampledata.samples[index].otu_ids.slice(0, 10)).reverse();
-        // map otu id to OTU + id
-        var otu_id = otu_top_10.map(d => "OTU " + d);
-        // get the top 10 OTU labels
-        var labels = sampledata.samples[index].otu_labels.slice(0,10);
-
-        // var sortedSampleData = sampledata.sort((a, b) => b.sample_values - a.sample_values);
-
-        // var slicedData = sortedSampleData.slice(0, 10);
-
-        // var reversedData = slicedData.reverse();
 
         var trace1 = {
             // x: sampledata.map(Object => Object.values(sampledata.sample_values.slice(0,10).reverse())),
