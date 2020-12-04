@@ -78,45 +78,49 @@ function dropdownData(x){
 
 
 
-function init() {
+function init(id) {
     d3.json(jsonData).then(function(sampledata) {
 
+        var index = sampledata.samples.findIndex(sample => sample.id === id);
 
-        var trace1 = {
-            // x: sampledata.map(Object => Object.values(sampledata.sample_values.slice(0,10).reverse())),
-            // y: sampledata.map(Object => Object.values(sampledata.otu_ids.slice(0,10).reverse())),
-            // text: sampledata.map(Object => Object.values(sampledata.otu_labels.slice(0,10).reverse())),
-            x: sampleValues,
-            y: otu_top_10,
-            type: "bar",
-            orientation: "h"
-        };
 
-        var data = [trace1];
+        // var trace1 = {
+        //     // x: sampledata.map(Object => Object.values(sampledata.sample_values.slice(0,10).reverse())),
+        //     // y: sampledata.map(Object => Object.values(sampledata.otu_ids.slice(0,10).reverse())),
+        //     // text: sampledata.map(Object => Object.values(sampledata.otu_labels.slice(0,10).reverse())),
+        //     x: sampleValues,
+        //     y: otu_top_10,
+        //     type: "bar",
+        //     orientation: "h"
+        // };
 
-        // var layout = {}
+        // var data = [trace1];
 
-        Plotly.newPlot("bar", data);
+        // // var layout = {}
+
+        // Plotly.newPlot("bar", data);
 
 // plot for bubble chart 
         var trace2 = {
-            // x: reversedData.map(Object => Object.values(sampleData.sample_values)),
-            // y: reversedData.map(Object => Object.values(sampleData.otu_ids)),
-            // text: reversedData.map(Object => Object.values(otu_labels)),
-            x: [1, 2, 3, 4],
-            y: [10, 11, 12, 13],
+            x: sampledata.samples[index].otu_ids,
+            y: sampledata.samples[index].sample_values,
+            text:  sampledata.samples[index].otu_labels,
+            // x: [1, 2, 3, 4],
+            // y: [10, 11, 12, 13],
             mode: "markers",
             marker: {
-                size: [40, 60, 80, 100]
+                size: sampledata.samples[index].sample_values,
+                color: sampledata.samples[index].otu_ids
             }
         };
 
         var data2 = [trace2];
 
         var layout = {
+            xaxis:{title: "OTU ID"},
             showlegend: false,
             height: 600,
-            width: 600
+            width: 1000
         };
 
         Plotly.newPlot("bubble", data2, layout);
@@ -126,6 +130,11 @@ function init() {
 }
     
     init();
+
+    function optionChanged(id) {
+        init(id);
+        getData(id);
+    }
     //     // Call updatePlotly() when a change takes place to the DOM
     // d3.selectAll("#bar").on("change", updatePlotly);
 
